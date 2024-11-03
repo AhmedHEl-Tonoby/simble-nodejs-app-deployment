@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-node-app
+  labels:
+    app: node
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: test-node-app
+        image: ahmedheltonoby/test-node-app:v1
+        ports:
+        - containerPort: 3000
+      - name: mongo-db
+        image: mongo:latest
+        ports:
+        - containerPort: 27017 
